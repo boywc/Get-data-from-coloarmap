@@ -1,0 +1,9 @@
+    box_leftdown = [476, 5117]        # x,y
+    box_leftdown_real = [-180, -60] # x,y
+    box_rightup = [14868, 325]       # x,y
+    box_rightup_real = [180, 60]    # x,y
+
+    box_leftdown_cb = [533, 217]        # x,y
+    box_left_real_cb = 0.0
+    box_rightup_cb = [5025, 78]       # x,y
+    box_right_real_cb = 0.8
