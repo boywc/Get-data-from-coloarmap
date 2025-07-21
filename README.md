@@ -17,7 +17,7 @@
 ## 功能特点
 
 - **图像数值还原**：输入图片和色标条，快速输出原始数据矩阵。
-- **高性能支持**：CPU、GPU、分块计算全覆盖。
+- **高性能支持**：CPU、GPU、分块计算全覆盖，支持大尺寸图片。
 - **数据可视化**：一键展示数据分布、单点查询。
 - **灵活参数配置**：所有坐标、范围参数在代码中清晰自定义。
 
@@ -38,27 +38,26 @@ pip install numpy opencv-python matplotlib cupy
 ```
 Get-data-from-coloarmap/
 │
-├── Get_Data_from_Coloarmap.py      # 主功能脚本
+├── Get_Data_from_Coloarmap.py      # 主功能脚本，所有API均在此文件
 ├── README.md
 │
-├── demo_1/
-│   ├── colorbar.png                # 色标条图片
-│   ├── data.npy                    # 提取后保存的数据
-│   ├── draw.jpg                    # 单点查询分布结果（test_3 生成）
-│   ├── jgre20757-fig-0007-m.jpg    # 热力图原图
-│   ├── test_1_demo1.py             # 数据提取脚本
-│   ├── test_2_demo1.py             # 数据可视化脚本
-│   └── test_3_demo1.py             # 单点数据查询脚本
+├── demo_1/                         # 演示样例1（含图片、脚本、结果）
+│   ├── colorbar.png
+│   ├── data.npy
+│   ├── draw.jpg
+│   ├── jgre20757-fig-0007-m.jpg
+│   ├── test_1_demo1.py
+│   ├── test_2_demo1.py
+│   └── test_3_demo1.py
 │
-├── demo_2/
-│   ├── colorbar.jpg                # 色标条图片
-│   ├── data.jpg                    # 热力图图片
-│   ├── data.npy                    # 提取后保存的数据
-│   ├── draw.jpg                    # 单点分布
+├── demo_2/                         # 演示样例2（含图片、脚本、结果）
+│   ├── colorbar.jpg
+│   ├── data.jpg
+│   ├── data.npy
+│   ├── draw.jpg
 │   ├── test_1_demo2.py
 │   ├── test_2_demo2.py
 │   └── test_3_demo2.py
-│
 ```
 
 ---
@@ -135,6 +134,23 @@ python demo_2/test_3_demo2.py
 
 ---
 
+## API 参考
+
+下列所有函数均在 `Get_Data_from_Coloarmap.py` 文件中：
+
+| 函数名                             | 主要参数                                                                                                        | 说明                                  |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **get\_colormap**               | (dataname, box\_leftdown, box\_rightup, box\_leftdown\_real, box\_rightup\_real, show=False)                | 裁剪主图图片指定区域，返回像素色值阵列（RGB），支持坐标标定和可视化 |
+| **get\_colorbar**               | (barname, box\_leftdown\_cb, box\_rightup\_cb, box\_left\_real\_cb, box\_right\_real\_cb, show=False)       | 读取色标条图片并提取色带，返回色标色值列表，支持显示          |
+| **data\_matching**              | (box\_data, box\_cb, box\_left\_real\_cb, box\_right\_real\_cb)                                             | 主图阵列与色标进行匹配（CPU），输出主图数值阵列           |
+| **data\_matching\_cupy**        | (box\_data, box\_cb, box\_left\_real\_cb, box\_right\_real\_cb)                                             | 同上，采用GPU（cupy）加速                    |
+| **data\_matching\_block**       | (box\_data, box\_cb, box\_left\_real\_cb, box\_right\_real\_cb, block)                                      | 分块处理主图（CPU），适合大尺寸图像                 |
+| **data\_matching\_block\_cupy** | (box\_data, box\_cb, box\_left\_real\_cb, box\_right\_real\_cb, block)                                      | 分块处理主图（GPU），适合大尺寸图像                 |
+| **display\_get\_data**          | (cb, data, cb\_min, cb\_max, data\_x\_min, data\_x\_max, data\_y\_min, data\_y\_max)                        | 用主图实际坐标范围和色标，展示最终数值阵列与色带对应关系        |
+| **find\_data**                  | (data, Lon, Lat, box\_leftdown\_real, box\_rightup\_real, range\_box=2, draw\_box=10, filter=0, show=False) | 查询主图上指定经纬度/坐标位置数值，支持小区域均值、显示和掩码绘制   |
+
+---
+
 ## 案例参考
 
 ### 案例1
@@ -194,3 +210,4 @@ python demo_2/test_3_demo2.py
 欢迎 Star、Fork 与使用本项目！如有问题或建议，欢迎通过 GitHub Issue 或邮件联系作者或维护者。
 
 ---
+
