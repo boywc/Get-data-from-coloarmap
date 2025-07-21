@@ -162,9 +162,10 @@ python demo_2/test_3_demo2.py
 
 ### 案例2
 
+* 论文原图：[A new global map of lunar surface chemical abundances from Chang’E-3 X-ray spectrometer](https://www.sciencedirect.com/science/article/pii/S0019103518300563)
 * 热力图图片：`demo_2/data.jpg`
 * 色标条图片：`demo_2/colorbar.jpg`
-* 其它参数详见 demo 脚本
+* 参数详见 demo 脚本
 
 > 其它热力图及色标条仅需更换图片，并同步更新坐标参数，即可复用。
 
@@ -211,4 +212,3 @@ python demo_2/test_3_demo2.py
 欢迎 Star、Fork 与使用本项目！如有问题或建议，欢迎通过 GitHub Issue 或邮件联系作者或维护者。
 
 ---
-
