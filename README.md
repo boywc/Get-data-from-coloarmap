@@ -11,6 +11,7 @@
 - 学术论文、报告仅以图片形式发布的数据还原
 - 热力图（colormap）、色标条（colorbar）自动批量提取
 - 空间数据（如经纬度）与色值映射自动标定
+- 标定点物理量插值与关系展示（如地表H值-热惯量曲线）
 
 ---
 
@@ -18,7 +19,7 @@
 
 - **图像数值还原**：输入图片和色标条，快速输出原始数据矩阵。
 - **高性能支持**：CPU、GPU、分块计算全覆盖，支持大尺寸图片。
-- **数据可视化**：一键展示数据分布、单点查询。
+- **数据可视化**：一键展示数据分布、单点查询、物理量插值可视化。
 - **灵活参数配置**：所有坐标、范围参数在代码中清晰自定义。
 
 ---
@@ -26,7 +27,7 @@
 ## 依赖环境
 
 ```bash
-pip install numpy opencv-python matplotlib cupy
+pip install numpy opencv-python matplotlib cupy scipy
 ````
 
 > GPU 计算需 CUDA 环境，普通 CPU 环境无需特殊硬件。
@@ -48,12 +49,13 @@ Get-data-from-coloarmap/
 │   ├── jgre20757-fig-0007-m.jpg
 │   ├── test_1_demo1.py
 │   ├── test_2_demo1.py
-│   └── test_3_demo1.py
+│   ├── test_3_demo1.py
+│   ├── trans.py                    # H值-热惯量插值与展示（样条拟合、定点推断）
 │
 ├── demo_2/                         # 演示样例2（含图片、脚本、结果）
 │   ├── colorbar.jpg
 │   ├── data.jpg
-│   ├── data.npy
+│   ├── data.npy （建议通过网盘下载，见案例2说明）
 │   ├── draw.jpg
 │   ├── test_1_demo2.py
 │   ├── test_2_demo2.py
@@ -122,6 +124,19 @@ python demo_2/test_3_demo2.py
 
 ---
 
+### 4. 物理量插值与可视化
+
+如需基于论文中的标定点，对地表 H 值与热惯量（Thermal Inertia）之间关系进行插值、推断或科学展示，可直接运行：
+
+```bash
+python demo_1/trans.py
+```
+
+* 输出：自动计算出指定着陆点 H 值对应的热惯量，并绘制 H-热惯量关系曲线与所有标记点。
+* 结果可用于论文复现、地表物性分析等二次科研场景。
+
+---
+
 ## 参数说明
 
 所有参数（坐标、范围、色值）均可在各 demo 脚本内直接修改，无需单独配置文件。
@@ -158,6 +173,7 @@ python demo_2/test_3_demo2.py
 * 论文原图：[Global Regolith Thermophysical Properties of the Moon From the Diviner Lunar Radiometer Experiment](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2017JE005387)
 * 热力图图片：`demo_1/jgre20757-fig-0007-m.jpg`
 * 色标条图片：`demo_1/colorbar.png`
+* H值-热惯量插值脚本：`demo_1/trans.py`（插值与可视化，支持定点推断与曲线展示）
 * 参数详见 demo 脚本
 
 ### 案例2
@@ -165,6 +181,8 @@ python demo_2/test_3_demo2.py
 * 论文原图：[A new global map of lunar surface chemical abundances from Chang’E-3 X-ray spectrometer](https://www.sciencedirect.com/science/article/pii/S0019103518300563)
 * 热力图图片：`demo_2/data.jpg`
 * 色标条图片：`demo_2/colorbar.jpg`
+* **数据矩阵（data.npy）未包含在仓库内，如需体验完整流程，请从以下链接下载并放入 `demo_2/data.npy`：**
+  [百度网盘下载地址（提取码: fc5f）](https://pan.baidu.com/s/1VR9TwGPiHDNkcVeeY0mpvg?pwd=fc5f)
 * 参数详见 demo 脚本
 
 > 其它热力图及色标条仅需更换图片，并同步更新坐标参数，即可复用。
