@@ -178,7 +178,7 @@ python demo_1/trans.py
 
 ### 案例2
 
-* 论文原图：[A new global map of lunar surface chemical abundances from Chang’E-3 X-ray spectrometer](https://www.sciencedirect.com/science/article/pii/S0019103518300563)
+* 论文原图：[Improved space weathering maps of the lunar surface through radiative transfer modeling of Kaguya multiband imager data](https://www.sciencedirect.com/science/article/pii/S0019103518300563)
 * 热力图图片：`demo_2/data.jpg`
 * 色标条图片：`demo_2/colorbar.jpg`
 * **数据矩阵（data.npy）未包含在仓库内，如需体验完整流程，请从以下链接下载并放入 `demo_2/data.npy`：**
