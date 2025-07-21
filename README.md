@@ -189,7 +189,8 @@ python demo_2/test_3_demo2.py
 
 ## 许可协议
 
-本项目基于 MIT License 开源。请自由使用、修改和分发。
+本项目基于 [MIT License](LICENSE) 开源。
+请自由使用、修改和分发。
 
 ---
 
